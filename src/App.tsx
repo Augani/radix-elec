@@ -1,50 +1,51 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import icon from '../assets/icon.svg';
+import { BrowserRouter as Router, Switch, Route, RouteProps } from 'react-router-dom';
 import './App.global.css';
+import Contacts from './pages/Contacts';
+import Main from './pages/Main';
+import Login from './pages/Login';
+const electron = window.require('electron');
+const { ipcRenderer } = electron;
 
-const Hello = () => {
-  return (
-    <div>
-      <div className="Hello">
-        <img width="200px" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
-    </div>
-  );
+export interface ProtectedRouteProps extends RouteProps{
+  firstTime?: boolean;
+  component?: any;
+  setUser: (x:boolean) => void;
+
+}
+
+const InitialRouter = ({firstTime,setUser, ...routeProps}: ProtectedRouteProps)=> {
+  if(firstTime) {
+    return <Route  render={()=><Main setUser={setUser}  />} {...routeProps}  />;
+  } else {
+    console.log('login')
+    return <Route render={()=><Login setUser={setUser}  />} {...routeProps} />;
+  }
 };
 
 export default function App() {
+  const [firstTime,setFirstTime] = React.useState(true);
+  const setUser = (value: boolean)=>{
+    setFirstTime(value);
+  }
+
+  React.useEffect(()=>{
+    let checkUserPassword = async ()=> {
+     try{
+      const res = await ipcRenderer.sendSync('retrievePassword');
+      if(res)setFirstTime(false);
+     }catch(e){}
+    }
+
+    checkUserPassword();
+  }, []);
+
   return (
     <Router>
       <Switch>
-        <Route path="/" component={Hello} />
+        <Route path="/contacts" component={Contacts}/>
+        <Route path="/login" component={Login}/>
+        <InitialRouter firstTime={firstTime}  path="/" setUser={setUser}   />
       </Switch>
     </Router>
   );

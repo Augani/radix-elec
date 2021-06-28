@@ -4,50 +4,103 @@
  */
 body {
   position: relative;
-  color: white;
+  color: rgb(0, 0, 0);
   height: 100vh;
   background: linear-gradient(
     200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
+    #ebeae9 -29.09%,
+    #bbbaba 51.77%,
+    #d4d4d4 129.35%
   );
   font-family: sans-serif;
   overflow-y: hidden;
   display: flex;
+  font-size: 16px;
   justify-content: center;
   align-items: center;
 }
 
-button {
-  background-color: white;
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainscreen h1, .loginScreen h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.mainscreen h3, .loginScreen h3 {
+  text-align: center;
+  font-size: 2rem;
+}
+ form{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+ input{
+  width: 12rem;
+  height: 3.2rem;
+  font-size: 1rem;
+  margin-bottom:0.4rem;
+}
+
+textarea{
+  width: 12rem;
+  height: 5rem;
+  font-size: 1rem;
+  margin-bottom:0.4rem;
+  font-weight: 500;
+  font-family: sans-serif;
+}
+
+form div{
+  margin-top: 1rem;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+ button{
+  background-color: rgb(219, 218, 218);
   padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
+  border: solid 0.05rem black;
   appearance: none;
   font-size: 1.3rem;
   box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
     0px 18px 88px -4px rgba(24, 39, 75, 0.14);
   transition: transform ease-in 0.1s;
   cursor: pointer;
+  margin: 0.5rem;
 }
 
-button:hover {
+ button:hover {
   transform: scale(1.05);
 }
 
-li {
+.mainscreen li {
   list-style: none;
 }
 
-a {
+.mainscreen a {
   text-decoration: none;
   height: fit-content;
   width: fit-content;
   margin: 10px;
 }
 
-a:hover {
+.mainscreen a:hover {
   opacity: 1;
   text-decoration: none;
 }
@@ -58,3 +111,110 @@ a:hover {
   align-items: center;
   margin: 20px 0;
 }
+
+
+
+/* Contacts */
+
+.contacts.main {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  background-color:white;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(6, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+grid-template-areas: "side detail detail"
+                     "side  detail  detail"
+                     "side  detail  detail"
+                     "side  detail  detail"
+                     "side  detail  detail"
+                     "side  action  action";
+}
+
+.contacts .side {
+  grid-area: side;
+  border-right: 1px solid black;
+}
+
+.contacts .list {
+  display: flex;
+  height: 100%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  text-transform: capitalize;
+}
+
+.list li {
+  margin: 0.2rem;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+
+.list li:hover {
+  background-color: rgb(219, 218, 218);
+
+}
+
+.contacts .detail {
+  grid-area: detail;
+  border-bottom: 1px solid black;
+}
+
+.contacts .titleHolder {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.otherDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.contacts .action {
+  grid-area: action;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: rgb(219, 218, 218);
+}
+
+.contact .action .btn {
+  background-color: rgb(219, 218, 218);
+  width: 6rem;
+  height: 3rem;
+  padding: 0.3rem 0.4rem;
+  border: solid 0.05rem black;
+  appearance: none;
+  font-size: 1.3rem;
+  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
+    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
+  transition: transform ease-in 0.1s;
+  cursor: pointer;
+}
+
+
+.detail form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+
