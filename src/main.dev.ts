@@ -64,6 +64,7 @@ ipcMain.on("requestDelete", async (event, args) => {
 
 ipcMain.on("deleteUserData", (event, args) => {
   Keytar.deletePassword("Contact", "UserPass");
+  new Store().clearData();
   const options = {
     type: "info",
     title: "Success",

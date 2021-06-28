@@ -18,6 +18,13 @@ class Store {
       return "";
     }
   }
+  clearData(){
+    try{
+      fs.unlinkSync(this.path)
+    }catch(e){
+      
+    }
+  }
 
 
   save(){
