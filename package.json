@@ -32,7 +32,6 @@
   "build": {
     "productName": "Radix Contact",
     "appId": "org.ganyobicodes.radix",
-    "asar": false,
     "files": [
       "dist/",
       "node_modules/",
