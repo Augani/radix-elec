@@ -30,7 +30,6 @@ const Login = ({ setUser }: ProtectedRouteProps) => {
   const clearData = async () => {
     try {
       const requestDelete = await ipcRenderer.sendSync("requestDelete");
-      console.log(requestDelete);
       if (requestDelete) return;
       ipcRenderer.send("deleteUserData");
       setUser(true);
