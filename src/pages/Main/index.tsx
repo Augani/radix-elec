@@ -11,7 +11,6 @@ const Main = ({ setUser }: ProtectedRouteProps) => {
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     ipcRenderer.send("createPassword", password);
-    console.log("created");
     ipcRenderer.on("passwordCreated", (event: any, arg: boolean) => {
       history.push("/contacts");
     });
