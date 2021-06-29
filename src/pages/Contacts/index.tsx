@@ -70,7 +70,7 @@ function Contacts() {
         <ul className="list">
           {contacts &&
             contacts.map((c: IContact) => (
-              <li onClick={() => viewContact(c.id)}>
+              <li key={c.id} onClick={() => viewContact(c.id)}>
                 {c.firstName} {c.lastName}
               </li>
             ))}
